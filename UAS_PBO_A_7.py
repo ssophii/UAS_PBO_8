@@ -12,43 +12,39 @@ class Notepad:
         # membuat atribut root dari parameter root
         self.root.title("Notepad")
         # membuat judul window
-        self.textarea = tk.Text(root, undo=True)
+        self.root.configure(bg="sienna")  
+        # mengatur warna latar belakang window
+        self.textarea = tk.Text(root, undo=True, bg="ivory", fg="saddlebrown")
         # membuat area kosong yang dapat diisi dengan teks
+        # dan mengatur warna latar belakang textarea dan warna teks)
         self.textarea.pack(expand=True, fill='both')
         # menentukan tata letak area text dengan tata letak pack
-        self.create_menu()
-        # digunakan untuk memanggil def create_menu
+        self.create_buttons()
+        # digunakan untuk memanggil def create_buttons
 
-    def create_menu(self):
-    # fungsi yang digunakan untuk membuat menu utama pada aplikasi
-        menubar = tk.Menu(self.root)
-        # untuk membuat objek menu pada tampilan
-        file_menu = tk.Menu(menubar, tearoff=0)
-        # untuk membuat objek menubar dengan nama file_menu pada tampilan
-        file_menu.add_command(label="New", command=self.new_file)
-        # membuat menu 'new' pada objek file_menu yang akan mengarah pada fungsi new_file
-        file_menu.add_command(label="Open", command=self.open_file)
-        # membuat menu 'open' pada objek file_menu yang akan mengarah pada fungsi open_file
-        file_menu.add_command(label="Save", command=self.save_file)
-        # membuat menu 'save' pada objek file_menu yang akan mengarah pada fungsi save_file
-        file_menu.add_command(label="Save As", command=self.save_file_as)
-        # membuat menu 'save as' pada objek file_menu yang akan mengarah pada fungsi save_file_as
-        file_menu.add_separator()
-        # untuk memisahkan objek selanjutnya dengan objek sebelumnya
-        file_menu.add_command(label="Exit", command=self.root.quit)
-        # membuat menu 'exit' pada objek file_menu yang akan menghentikan program
-        menubar.add_cascade(label="File", menu=file_menu)
-        # menambah sub objek menu pada menubar
-
-        edit_menu = tk.Menu(menubar, tearoff=0)
-        # untuk membuat objek menubar baru dengan nama edit_menu
-        edit_menu.add_command(label="Undo", command=self.textarea.edit_undo)
-        # membuat menu 'undo' pada objek edit_menu yang akan menjalankan undo pada textarea
-        menubar.add_cascade(label="Edit", menu=edit_menu)
-        # menambah sub objek menu pada menubar
-
-        self.root.config(menu=menubar)
-        # mengkonfigurasi objek menubar sebagai menu utama pada objek root
+    def create_buttons(self):
+        button_frame = tk.Frame(self.root, bg="sienna")  
+        # untuk membuat frame yang berisi tombol dan mengatur warna latar belakang button_frame dengan warna "sienna"
+        button_frame.pack()
+        # mengatur tata letak frame
+        button_width = 10  
+        # untuk mengatur lebar tombol menjadi 10
+        new_button = tk.Button(button_frame, text="New", command=self.new_file, width=button_width, bg="burlywood", fg="white")  
+        # menambah tombal "New" dan mengatur warna latar belakang menjadi "burlywood" dan warna teks tombol menjadi "white"
+        new_button.pack(side=tk.LEFT, padx=5, pady=5)
+        # untuk mengatur tata letak tombol "new"
+        open_button = tk.Button(button_frame, text="Open", command=self.open_file, width=button_width, bg="burlywood", fg="white")  
+        # menambah tombal "Open" dan mengatur warna latar belakang menjadi "burlywood" dan warna teks tombol menjadi "white"
+        open_button.pack(side=tk.LEFT, padx=5, pady=5)
+        # untuk mengatur tata letak tombol "open"
+        save_button = tk.Button(button_frame, text="Save", command=self.save_file, width=button_width, bg="burlywood", fg="white")  
+        # menambah tombal "Save" dan mengatur warna latar belakang menjadi "burlywood" dan warna teks tombol menjadi "white"
+        save_button.pack(side=tk.LEFT, padx=5, pady=5)
+        # untuk mengatur tata letak tombol "save"
+        save_as_button = tk.Button(button_frame, text="Save As", command=self.save_file_as, width=button_width, bg="burlywood", fg="white")  
+        # menambah tombal "Save As" dan mengatur warna latar belakang menjadi "burlywood" dan warna teks tombol menjadi "white"
+        save_as_button.pack(side=tk.LEFT, padx=5, pady=5)
+        # untuk mengatur tata letak tombol "save as"
 
     def new_file(self):
     # fungsi yang digunakan untuk menampilkan textarea baru
